@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geração Alpha</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Estilos Gerais e Variáveis de Design */
+        :root {
+            --primary-color: #00b4d8;
+            --secondary-color: #0077b6;
+            --accent-color: #ade8f4;
+            --light-color: #f0f8ff;
+            --dark-color: #03045e;
+            --success-color: #2a9d8f;
+            --error-color: #e63946;
+            --warning-color: #fca311;
+            --border-radius: 12px;
+            --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            --font-family: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-family);
+            line-height: 1.7;
+            color: var(--dark-color);
+            background: linear-gradient(135deg, var(--light-color) 0%, #e0f0ff 100%);
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        section {
+            padding: 4rem 0;
+            min-height: 80vh;
+            display: none; /* Escondido por padrão */
+        }
+
+        section.active-section {
+            display: block; /* Visível quando ativo */
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--dark-color);
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+        
+        .hidden { display: none !important; }
+
+        /* Estilo de Botão Moderno */
+        .btn {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5);
+        }
+
+        /* Header */
+        header {
+            background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(135deg, var(--dark-color), var(--secondary-color));
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            margin-bottom: 0;
+            border-bottom-left-radius: 50% 20px;
+            border-bottom-right-radius: 50% 20px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            animation: slideDown 1s ease-out;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            animation: slideDown 1s ease-out 0.2s;
+            animation-fill-mode: backwards;
+        }
+        
+        @keyframes slideDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Navegação com Efeito de Vidro */
+        nav {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: var(--glass-shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--dark-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        nav a:hover::after, nav a.active::after {
+            width: 50%;
+        }
+
+        nav i { margin-right: 8px; }
+        
+        /* Cards com Efeito de Vidro e Hover */
+        .intro-grid, .quiz-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .intro-card, .quiz-card {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            text-align: center;
+            box-shadow: var(--glass-shadow);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .intro-card:hover, .quiz-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        }
+
+        .intro-card img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+            object-fit: contain;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+        
+        .quiz-card { cursor: pointer; text-align: left; }
+        .quiz-card h3 { color: var(--dark-color); }
+        .difficulty {
+            position: absolute; top: 15px; right: 15px;
+            padding: 4px 12px; border-radius: 50px; font-size: 12px;
+            font-weight: bold; color: white;
+        }
+        .easy { background-color: var(--success-color); }
+        .medium { background-color: var(--warning-color); }
+        .hard { background-color: var(--error-color); }
+
+        /* Seção Quiz Interativa */
+        #quiz-screen {
+            background: white; border-radius: var(--border-radius);
+            padding: 2rem; box-shadow: var(--box-shadow);
+            max-width: 800px; margin: 2rem auto;
+        }
+        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+        .quiz-progress { text-align: right; }
+        .progress-bar { width: 200px; height: 10px; background-color: #e0e0e0; border-radius: 5px; margin-top: 5px; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 5px; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); width: 0%; transition: width 0.4s ease-in-out; }
+        .quiz-question { font-size: 1.3rem; margin-bottom: 2rem; font-weight: 500; }
+        .quiz-options { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }
+        
+        .quiz-option {
+            padding: 15px; background-color: var(--light-color);
+            border: 2px solid transparent; border-radius: var(--border-radius);
+            cursor: pointer; transition: all 0.2s ease;
+        }
+        .quiz-option:hover { border-color: var(--accent-color); background-color: #e6faff; }
+        .quiz-option.selected { border-color: var(--primary-color); background-color: var(--accent-color); font-weight: bold; }
+        .quiz-option.correct { background-color: var(--success-color); color: white; border-color: var(--success-color); }
+        .quiz-option.incorrect { background-color: var(--error-color); color: white; border-color: var(--error-color); }
+        
+        #quiz-result { text-align: center; margin-top: 2rem; animation: fadeIn 0.5s; }
+        #quiz-score { font-size: 3rem; color: var(--primary-color); font-weight: 700; }
+        #quiz-feedback { font-size: 1.2rem; margin: 1rem 0 2rem 0; }
+        
+        /* Jogo da Memória */
+        .memory-game-controls {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+        }
+        .memory-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1rem;
+            max-width: 600px;
+            margin: 0 auto;
+            perspective: 1000px; /* For 3D flip effect */
+        }
+        .memory-card {
+            height: 120px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            box-shadow: var(--glass-shadow);
+        }
+        .memory-card .front-face,
+        .memory-card .back-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: var(--border-radius);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3rem;
+        }
+        .memory-card .front-face {
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+        .memory-card .back-face {
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            transform: rotateY(180deg);
+        }
+        .memory-card.flip {
+            transform: rotateY(180deg);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color); color: white;
+            padding: 3rem 0; text-align: center; margin-top: 3rem;
+        }
+        .social-links { margin-top: 1rem; }
+        .social-links a { color: white; margin: 0 15px; font-size: 1.8rem; transition: color 0.3s; }
+        .social-links a:hover { color: var(--primary-color); }
+
+        /* Responsividade */
+        @media screen and (max-width: 768px) {
+            section h2 { font-size: 2rem; }
+            nav ul { justify-content: space-around; }
+            nav a { padding: 1rem; }
+        }
+        
+        @media screen and (max-width: 600px) {
+            .memory-board {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .quiz-container, .intro-grid { grid-template-columns: 1fr; }
+            header h1 { font-size: 2.5rem; }
+            header p { font-size: 1rem; }
+            .memory-board {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .memory-card {
+                 height: 100px;
+            }
+            .memory-card .front-face, .memory-card .back-face {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Geração Alpha Interativa</h1>
+            <p>Explore a primeira geração 100% digital com jogos educativos</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home" class="active"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
+                <li><a href="#memory-game"><i class="fas fa-brain"></i> Jogo da Memória</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section id="home" class="active-section">
+            <h2>Bem-vindo ao Mundo da Geração Alpha</h2>
+            <div class="intro-grid">
+                <div class="intro-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Ícone de Quiz">
+                    <h3>Teste Seu Conhecimento</h3>
+                    <p>Responda quizzes sobre a primeira geração nascida na era dos tablets e da IA.</p>
+                </div>
+                <div class="intro-card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3893/3893122.png" alt="Ícone de Jogo da Memória">
+                    <h3>Desafie sua Memória</h3>
+                    <p>Encontre os pares de ícones que definem o universo da Geração Alpha.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="quizzes">
+            <h2>Quizzes sobre a Geração Alpha</h2>
+            <div class="quiz-container">
+                <div class="quiz-card" data-quiz-id="0">
+                    <h3>Quiz Básico</h3>
+                    <p>05 perguntas sobre características da Gen Alpha</p>
+                    <span class="difficulty easy">Fácil</span>
+                </div>
+                <div class="quiz-card" data-quiz-id="1">
+                    <h3>Tecnologia e Educação</h3>
+                    <p>Como a Gen Alpha aprende e se desenvolve?</p>
+                    <span class="difficulty medium">Médio</span>
+                </div>
+                <div class="quiz-card" data-quiz-id="2">
+                    <h3>Desafio Expert</h3>
+                    <p>Perguntas avançadas sobre comportamentos</p>
+                    <span class="difficulty hard">Difícil</span>
+                </div>
+            </div>
+
+            <div id="quiz-screen" class="hidden">
+                <div class="quiz-header">
+                    <h3 id="quiz-title">Quiz</h3>
+                    <div class="quiz-progress-container">
+                        <span id="quiz-progress-text">1/5</span>
+                        <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+                    </div>
+                </div>
+                <div class="quiz-question" id="quiz-question">Pergunta aparecerá aqui</div>
+                <div class="quiz-options" id="quiz-options"></div>
+                <div style="text-align: center; margin-top: 1rem;">
+                    <button id="next-btn" class="btn hidden">Próxima</button>
+                </div>
+                <div id="quiz-result" class="hidden">
+                    <h3>Seu Resultado:</h3>
+                    <p id="quiz-score">0/5</p>
+                    <p id="quiz-feedback"></p>
+                    <button id="reset-quiz-btn" class="btn">Fazer outro quiz</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="memory-game">
+            <h2>Jogo da Memória Alpha</h2>
+            <div class="memory-game-controls">
+                <span>Movimentos: <strong id="moves-count">0</strong></span>
+                <button id="reset-memory-game" class="btn">Reiniciar Jogo</button>
+            </div>
+            <div class="memory-board" id="memory-board">
+                </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Geração Alpha - Todos os direitos reservados</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-tiktok"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // --- LÓGICA DE NAVEGAÇÃO ---
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('main section');
+
+        function updateActiveNav(targetId) {
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === targetId);
+            });
+            sections.forEach(section => {
+                section.classList.toggle('active-section', `#${section.id}` === targetId);
+            });
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href');
+                updateActiveNav(targetId);
+                // Carrega o jogo quando a seção se torna ativa
+                if (targetId === '#memory-game') {
+                    initMemoryGame();
+                }
+            });
+        });
+        
+        // --- LÓGICA DO QUIZ ---
+        const quizzesData = [
+            { // Quiz 0 - Fácil
+                title: "Conceitos Básicos",
+                questions: [
+                    { q: "Qual o período de nascimento da Geração Alpha?", o: ["2010-2024", "2000-2009", "1995-1999"], a: 0 },
+                    { q: "Qual dispositivo icônico foi lançado no mesmo ano que a Geração Alpha começou?", o: ["iPhone", "iPad", "Kindle"], a: 1 },
+                    { q: "A Geração Alpha é sucessora de qual geração?", o: ["Geração Z", "Millennials", "Geração X"], a: 0 },
+                    { q: "Qual plataforma de vídeo é extremamente popular entre as crianças Alpha?", o: ["Facebook Watch", "Netflix", "YouTube"], a: 2 },
+                    { q: "Como a Geração Alpha também é conhecida?", o: ["Geração de Vidro", "Nativos da Nuvem", "Geração Silenciosa"], a: 0 }
+                ]
+            },
+            { // Quiz 1 - Médio
+                title: "Tecnologia e Educação",
+                questions: [
+                    { q: "O que é 'sharenting'?", o: ["Pais compartilhando excessivamente sobre os filhos online", "Crianças que compartilham brinquedos", "Software de controle parental"], a: 0 },
+                    { q: "Qual habilidade a Geração Alpha tende a desenvolver mais rapidamente?", o: ["Caligrafia", "Interação social face a face", "Alfabetização digital"], a: 2 },
+                    { q: "O aprendizado 'gamificado' refere-se a:", o: ["Aprender jogando videogame o dia todo", "Usar elementos de jogos em atividades educacionais", "Proibir jogos na escola"], a: 1 },
+                    { q: "Assistentes de voz como Alexa e Siri são, para a Geração Alpha:", o: ["Uma novidade rara", "Ferramentas complexas", "Parte integrante do cotidiano"], a: 2 },
+                    { q: "Qual a maior preocupação dos pais sobre a criação dos Alphas?", o: ["Falta de acesso à tecnologia", "Tempo excessivo de tela", "Dificuldade em usar a internet"], a: 1 }
+                ]
+            },
+            { // Quiz 2 - Difícil
+                title: "Desafio Expert",
+                questions: [
+                    { q: "Quem cunhou o termo 'Geração Alpha'?", o: ["Mark McCrindle", "Neil Howe", "William Strauss"], a: 0 },
+                    { q: "Qual o impacto da IA na educação Alpha?", o: ["Personalização do aprendizado em escala", "Substituição total de professores", "Nenhum impacto significativo"], a: 0 },
+                    { q: "Qual fenômeno psicológico está associado à constante exposição a conteúdo curto (como TikTok)?", o: ["Aumento da capacidade de foco", "Redução do 'attention span' (período de atenção)", "Aversão a tecnologia"], a: 1 },
+                    { q: "Até 2025, a Geração Alpha será a mais... do que qualquer geração anterior.", o: ["com facilidade em usar ferramentas digitais", "rica", "familiarizada com máquinas de escrever"], a: 0 },
+                    { q: "A interação com a tecnologia desde o berço pode influenciar o cérebro Alpha em qual aspecto?", o: ["Aumentando a neuroplasticidade", "Diminuindo a criatividade", "Limitando a capacidade de multitarefa"], a: 0 }
+                ]
+            }
+        ];
+
+        const quizContainer = document.querySelector('.quiz-container');
+        const quizScreen = document.getElementById('quiz-screen');
+        const quizTitle = document.getElementById('quiz-title');
+        const quizQuestionEl = document.getElementById('quiz-question');
+        const quizOptionsEl = document.getElementById('quiz-options');
+        const nextBtn = document.getElementById('next-btn');
+        const quizResultEl = document.getElementById('quiz-result');
+        const resetQuizBtn = document.getElementById('reset-quiz-btn');
+        const progressText = document.getElementById('quiz-progress-text');
+        const progressFill = document.getElementById('progress-fill');
+
+        let currentQuiz, currentQuestionIndex, score;
+
+        quizContainer.addEventListener('click', (e) => {
+            const card = e.target.closest('.quiz-card');
+            if (card) {
+                startQuiz(parseInt(card.dataset.quizId));
+            }
+        });
+
+        function startQuiz(quizId) {
+            currentQuiz = quizzesData[quizId];
+            questions = currentQuiz.questions;
+            currentQuestionIndex = 0;
+            score = 0;
+
+            quizContainer.classList.add('hidden');
+            quizResultEl.classList.add('hidden');
+            quizScreen.classList.remove('hidden');
+            quizTitle.textContent = currentQuiz.title;
+            
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            quizOptionsEl.innerHTML = '';
+            nextBtn.classList.add('hidden');
+            
+            const question = questions[currentQuestionIndex];
+            quizQuestionEl.textContent = question.q;
+            
+            progressText.textContent = `${currentQuestionIndex + 1}/${questions.length}`;
+            progressFill.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
+
+            question.o.forEach((option, index) => {
+                const optionEl = document.createElement('div');
+                optionEl.classList.add('quiz-option');
+                optionEl.textContent = option;
+                optionEl.dataset.index = index;
+                optionEl.addEventListener('click', selectOption);
+                quizOptionsEl.appendChild(optionEl);
+            });
+        }
+        
+        function selectOption(e) {
+            const selected = e.target;
+            const correctIndex = questions[currentQuestionIndex].a;
+            
+            if (parseInt(selected.dataset.index) === correctIndex) {
+                score++;
+                selected.classList.add('correct');
+            } else {
+                selected.classList.add('incorrect');
+                quizOptionsEl.querySelector(`[data-index='${correctIndex}']`).classList.add('correct');
+            }
+            
+            Array.from(quizOptionsEl.children).forEach(child => {
+                child.removeEventListener('click', selectOption);
+                child.style.cursor = 'default';
+            });
+
+            nextBtn.classList.remove('hidden');
+        }
+
+        nextBtn.addEventListener('click', () => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                loadQuestion();
+            } else {
+                showResults();
+            }
+        });
+
+        function showResults() {
+            quizQuestionEl.textContent = '';
+            quizOptionsEl.innerHTML = '';
+            nextBtn.classList.add('hidden');
+            quizResultEl.classList.remove('hidden');
+            
+            const scorePercent = (score / questions.length) * 100;
+            document.getElementById('quiz-score').textContent = `${score}/${questions.length}`;
+            
+            let feedback = '';
+            if(scorePercent === 100) feedback = "Excelente! Você é um expert!";
+            else if (scorePercent >= 60) feedback = "Muito bom! Você conhece bem o assunto.";
+            else feedback = "Bom esforço! Continue aprendendo.";
+            document.getElementById('quiz-feedback').textContent = feedback;
+        }
+
+        resetQuizBtn.addEventListener('click', () => {
+            quizScreen.classList.add('hidden');
+            quizContainer.classList.remove('hidden');
+        });
+
+        // --- LÓGICA DO JOGO DA MEMÓRIA ---
+        const memoryBoard = document.getElementById('memory-board');
+        const movesCountSpan = document.getElementById('moves-count');
+        const resetMemoryBtn = document.getElementById('reset-memory-game');
+
+        const cardIcons = [
+            'fa-tablet-alt', 'fa-gamepad', 'fa-robot',
+            'fa-wifi', 'fa-camera-retro', 'fa-headphones'
+        ];
+        
+        let hasFlippedCard = false;
+        let lockBoard = false;
+        let firstCard, secondCard;
+        let moves = 0;
+
+        function createBoard() {
+            memoryBoard.innerHTML = '';
+            moves = 0;
+            movesCountSpan.textContent = moves;
+            const gameIcons = [...cardIcons, ...cardIcons];
+            gameIcons.sort(() => 0.5 - Math.random());
+
+            gameIcons.forEach(icon => {
+                const cardElement = document.createElement('div');
+                cardElement.classList.add('memory-card');
+                cardElement.dataset.icon = icon;
+
+                cardElement.innerHTML = `
+                    <div class="front-face">
+                        <i class="fas fa-question"></i>
+                    </div>
+                    <div class="back-face">
+                        <i class="fas ${icon}"></i>
+                    </div>
+                `;
+                cardElement.addEventListener('click', flipCard);
+                memoryBoard.appendChild(cardElement);
+            });
+        }
+
+        function flipCard() {
+            if (lockBoard || this === firstCard) return;
+
+            this.classList.add('flip');
+
+            if (!hasFlippedCard) {
+                hasFlippedCard = true;
+                firstCard = this;
+                return;
+            }
+
+            secondCard = this;
+            moves++;
+            movesCountSpan.textContent = moves;
+
+            checkForMatch();
+        }
+
+        function checkForMatch() {
+            let isMatch = firstCard.dataset.icon === secondCard.dataset.icon;
+            isMatch ? disableCards() : unflipCards();
+        }
+
+        function disableCards() {
+            firstCard.removeEventListener('click', flipCard);
+            secondCard.removeEventListener('click', flipCard);
+            resetBoard();
+        }
+
+        function unflipCards() {
+            lockBoard = true;
+            setTimeout(() => {
+                firstCard.classList.remove('flip');
+                secondCard.classList.remove('flip');
+                resetBoard();
+            }, 1200);
+        }
+
+        function resetBoard() {
+            [hasFlippedCard, lockBoard] = [false, false];
+            [firstCard, secondCard] = [null, null];
+        }
+        
+        function initMemoryGame() {
+            createBoard();
+            lockBoard = true; // Bloqueia o tabuleiro para a pré-visualização
+
+            const cards = memoryBoard.querySelectorAll('.memory-card');
+
+            // Vira todas as cartas para mostrar os ícones
+            cards.forEach(card => card.classList.add('flip'));
+
+            // Após 1 segundo, vira todas de volta
+            setTimeout(() => {
+                cards.forEach(card => card.classList.remove('flip'));
+
+                // Espera a animação de virar terminar para desbloquear o tabuleiro
+                setTimeout(() => {
+                    lockBoard = false;
+                }, 600); // Deve corresponder à duração da transição do CSS
+
+            }, 2000); // 1 segundo de pré-visualização
+        }
+        
+        resetMemoryBtn.addEventListener('click', initMemoryGame);
+        
+        // Carrega o primeiro estado da página
+        updateActiveNav('#home');
+    });
+    </script>
+</body>
+</html>
+<title>Teste do VLibras</title>
+</head>
+
+<body>
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper>
+      <div class="vw-plugin-top-wrapper"></div>
+    </div>
+  </div>
+  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+  <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+  </script>
+</body>
+</html>
