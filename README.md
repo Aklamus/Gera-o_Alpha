@@ -1,16 +1,10 @@
-Claro, aqui está uma versão mais resumida e direta do `README.md`, focada nas informações mais essenciais.
-
------
-
 # Geração Alpha Interativa 🎮✨
 
   
 
 Página web educativa e interativa sobre a Geração Alpha, com jogos para aprender e se divertir. Construída com tecnologias web puras, sem frameworks, e contida em um único arquivo HTML.
 
-**➡️ [Acesse a demonstração ao vivo aqui\!](https://www.google.com/search?q=https://seu-usuario.github.io/geracao-alpha-interativa/)**
-
-*(Substitua o link acima pelo link do seu projeto)*
+**➡️ [Acesse a demonstração ao vivo aqui\!]([https://www.google.com/search?q=https://seu-usuario.github.io/geracao-alpha-interativa/])**
 
 -----
 
