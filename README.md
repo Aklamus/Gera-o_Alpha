@@ -28,7 +28,7 @@ Página web educativa e interativa sobre a Geração Alpha, com jogos para apren
 
 1.  Clone este repositório:
     ```bash
-    git clone https://github.com/seu-usuario/geracao-alpha-interativa.git
+    git clone https://github.com/aklamus/Geracao_Alpha.git
     ```
 2.  Abra o arquivo `index.html` em qualquer navegador.
 
