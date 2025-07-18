@@ -4,7 +4,7 @@
 
 Página web educativa e interativa sobre a Geração Alpha, com jogos para aprender e se divertir. Construída com tecnologias web puras, sem frameworks, e contida em um único arquivo HTML.
 
-**➡️ [Acesse a demonstração ao vivo aqui\!]([https://www.google.com/search?q=https://seu-usuario.github.io/geracao-alpha-interativa/])**
+**➡️ [Acesse a demonstração ao vivo aqui\!](https://aklamus.github.io/Geracao_Alpha/)**
 
 -----
 
