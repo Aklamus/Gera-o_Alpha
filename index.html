@@ -3,30 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Geração Alpha</title>
-          <link rel="icon" type="image/x-icon" href="tec.png">
+    <title>Geração Alpha - Explorando a Primeira Geração Digital</title>
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiByeD0iOCIgZmlsbD0iIzAwYjRkOCIvPgo8cGF0aCBkPSJNMTYgOEwxOC41IDE0SDE0LjVMMTYgOFoiIGZpbGw9IndoaXRlIi8+CjxwYXRoIGQ9Ik0xNiAyNEwxOC41IDE4SDE0LjVMMTYgMjRaIiBmaWxsPSJ3aGl0ZSIvPgo8L3N2Zz4K">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     
     <style>
-        /* Estilos Gerais e Variáveis de Design */
+        /* ========== VARIÁVEIS DE DESIGN ========== */
         :root {
-            --primary-color: #00b4d8;
-            --secondary-color: #0077b6;
-            --accent-color: #ade8f4;
-            --light-color: #f0f8ff;
-            --dark-color: #03045e;
-            --success-color: #2a9d8f;
-            --error-color: #e63946;
-            --warning-color: #fca311;
-            --border-radius: 12px;
-            --box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-            --glass-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-            --font-family: 'Poppins', sans-serif;
+            --primary-color: #6366f1;
+            --secondary-color: #8b5cf6;
+            --accent-color: #06b6d4;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --error-color: #ef4444;
+            --dark-color: #0f172a;
+            --light-color: #f8fafc;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-300: #d1d5db;
+            --gray-600: #4b5563;
+            --gray-800: #1f2937;
+            --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            --gradient-accent: linear-gradient(135deg, var(--accent-color) 0%, var(--primary-color) 100%);
+            --font-primary: 'Inter', sans-serif;
+            --font-display: 'Space Grotesk', sans-serif;
+            --border-radius: 16px;
+            --border-radius-lg: 24px;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            --glass-bg: rgba(255, 255, 255, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
 
+        /* ========== RESET E BASE ========== */
         * {
             margin: 0;
             padding: 0;
@@ -35,106 +51,191 @@
 
         html {
             scroll-behavior: smooth;
+            font-size: 16px;
         }
 
         body {
-            font-family: var(--font-family);
-            line-height: 1.7;
+            font-family: var(--font-primary);
+            line-height: 1.6;
             color: var(--dark-color);
-            background: linear-gradient(135deg, var(--light-color) 0%, #e0f0ff 100%);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             overflow-x: hidden;
         }
 
         .container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 15px;
+            padding: 0 20px;
         }
-        
+
+        /* ========== SEÇÕES ========== */
         section {
-            padding: 4rem 0;
-            min-height: 80vh;
-            display: none; /* Escondido por padrão */
+            padding: 5rem 0;
+            min-height: 100vh;
+            display: none;
+            position: relative;
         }
 
         section.active-section {
-            display: block; /* Visível quando ativo */
-            animation: fadeIn 0.8s ease-in-out;
+            display: block;
+            animation: fadeInUp 0.8s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
         section h2 {
             text-align: center;
-            margin-bottom: 2.5rem;
-            color: var(--dark-color);
-            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: white;
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
+            text-shadow: 0 4px 8px rgba(0,0,0,0.3);
         }
-        
+
         .hidden { display: none !important; }
 
-        /* Estilo de Botão Moderno */
+        /* ========== COMPONENTES GLOBAIS ========== */
         .btn {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: var(--gradient-primary);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 14px 28px;
             border-radius: var(--border-radius);
             cursor: pointer;
             font-size: 16px;
             font-weight: 600;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 180, 216, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-lg);
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 180, 216, 0.5);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
         }
 
-        /* Header */
-        header {
-            background: url('https://www.transparenttextures.com/patterns/cubes.png'), linear-gradient(135deg, var(--dark-color), var(--secondary-color));
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid white;
             color: white;
-            padding: 5rem 0;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+        /* ========== HEADER ========== */
+        header {
+            background: linear-gradient(135deg, var(--dark-color) 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+            color: white;
+            padding: 8rem 0;
             text-align: center;
-            margin-bottom: 0;
-            border-bottom-left-radius: 50% 20px;
-            border-bottom-right-radius: 50% 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
         }
 
         header h1 {
-            font-size: 3.5rem;
-            margin-bottom: 0.5rem;
-            animation: slideDown 1s ease-out;
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            margin-bottom: 1rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ffffff, #a855f7, #06b6d4);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
 
         header p {
-            font-size: 1.2rem;
-            color: var(--accent-color);
-            animation: slideDown 1s ease-out 0.2s;
-            animation-fill-mode: backwards;
-        }
-        
-        @keyframes slideDown {
-            from { transform: translateY(-30px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+            font-size: clamp(1rem, 3vw, 1.5rem);
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
         }
 
-        /* Navegação com Efeito de Vidro */
-        nav {
-            background: rgba(255, 255, 255, 0.25);
+        .header-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .stat-item {
+            background: var(--glass-bg);
             backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: var(--glass-shadow);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            color: var(--dark-color);
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* ========== NAVEGAÇÃO ========== */
+        nav {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-lg);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -146,134 +247,478 @@
             list-style: none;
             justify-content: center;
             flex-wrap: wrap;
+            padding: 0.5rem 0;
         }
-        
+
         nav a {
-            display: block;
+            display: flex;
+            align-items: center;
             padding: 1rem 1.5rem;
             color: var(--dark-color);
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
             position: relative;
+            border-radius: var(--border-radius);
+            margin: 0 0.25rem;
         }
 
-        nav a::after {
+        nav a::before {
             content: '';
             position: absolute;
-            bottom: 5px;
+            bottom: 0;
             left: 50%;
             transform: translateX(-50%);
             width: 0;
             height: 3px;
-            background: var(--primary-color);
+            background: var(--gradient-primary);
             transition: width 0.3s ease;
             border-radius: 2px;
         }
 
-        nav a:hover::after, nav a.active::after {
-            width: 50%;
+        nav a:hover::before,
+        nav a.active::before {
+            width: 80%;
         }
 
-        nav i { margin-right: 8px; }
-        
-        /* Cards com Efeito de Vidro e Hover */
-        .intro-grid, .quiz-container {
+        nav a:hover {
+            color: var(--primary-color);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        nav i {
+            margin-right: 8px;
+            font-size: 1.1rem;
+        }
+
+        /* ========== SEÇÃO HOME ========== */
+        .intro-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
+            margin-bottom: 4rem;
         }
 
-        .intro-card, .quiz-card {
-            background: rgba(255, 255, 255, 0.4);
-            border-radius: var(--border-radius);
-            padding: 2rem;
+        .intro-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
             text-align: center;
-            box-shadow: var(--glass-shadow);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
             overflow: hidden;
         }
 
-        .intro-card:hover, .quiz-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.15);
+        .intro-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.8s;
         }
 
-        .intro-card img {
+        .intro-card:hover::before {
+            left: 100%;
+        }
+
+        .intro-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .intro-card .icon {
             width: 80px;
             height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .intro-card h3 {
+            color: var(--dark-color);
+            font-family: var(--font-display);
+            font-size: 1.5rem;
             margin-bottom: 1rem;
-            object-fit: contain;
-            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+            font-weight: 700;
         }
-        
-        .quiz-card { cursor: pointer; text-align: left; }
-        .quiz-card h3 { color: var(--dark-color); }
+
+        .intro-card p {
+            color: var(--gray-600);
+            line-height: 1.6;
+        }
+
+        /* ========== SEÇÃO SOBRE ========== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .about-text {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .about-text h3 {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--gray-600);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .about-features {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateX(10px);
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .feature-text h4 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+        }
+
+        /* ========== SEÇÃO QUIZZES ========== */
+        .quiz-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .quiz-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .quiz-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .quiz-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .quiz-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .quiz-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+            position: relative;
+            z-index: 2;
+        }
+
+        .quiz-card p {
+            color: var(--gray-600);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
         .difficulty {
-            position: absolute; top: 15px; right: 15px;
-            padding: 4px 12px; border-radius: 50px; font-size: 12px;
-            font-weight: bold; color: white;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            z-index: 3;
         }
+
         .easy { background-color: var(--success-color); }
         .medium { background-color: var(--warning-color); }
         .hard { background-color: var(--error-color); }
 
-        /* Seção Quiz Interativa */
+        .quiz-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .quiz-info {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--gray-600);
+        }
+
+        /* ========== TELA DO QUIZ ========== */
         #quiz-screen {
-            background: white; border-radius: var(--border-radius);
-            padding: 2rem; box-shadow: var(--box-shadow);
-            max-width: 800px; margin: 2rem auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-lg);
+            padding: 3rem;
+            box-shadow: var(--shadow-xl);
+            max-width: 900px;
+            margin: 2rem auto;
         }
-        .quiz-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-        .quiz-progress { text-align: right; }
-        .progress-bar { width: 200px; height: 10px; background-color: #e0e0e0; border-radius: 5px; margin-top: 5px; overflow: hidden; }
-        .progress-fill { height: 100%; border-radius: 5px; background: linear-gradient(to right, var(--primary-color), var(--secondary-color)); width: 0%; transition: width 0.4s ease-in-out; }
-        .quiz-question { font-size: 1.3rem; margin-bottom: 2rem; font-weight: 500; }
-        .quiz-options { display: grid; grid-template-columns: 1fr; gap: 1rem; margin-bottom: 2rem; }
-        
+
+        .quiz-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--gray-200);
+        }
+
+        .quiz-progress-container {
+            text-align: right;
+        }
+
+        .progress-bar {
+            width: 250px;
+            height: 12px;
+            background-color: var(--gray-200);
+            border-radius: 6px;
+            margin-top: 8px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .progress-fill {
+            height: 100%;
+            border-radius: 6px;
+            background: var(--gradient-primary);
+            width: 0%;
+            transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .quiz-question {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
         .quiz-option {
-            padding: 15px; background-color: var(--light-color);
-            border: 2px solid transparent; border-radius: var(--border-radius);
-            cursor: pointer; transition: all 0.2s ease;
+            padding: 1.5rem;
+            background-color: white;
+            border: 2px solid var(--gray-200);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+            overflow: hidden;
         }
-        .quiz-option:hover { border-color: var(--accent-color); background-color: #e6faff; }
-        .quiz-option.selected { border-color: var(--primary-color); background-color: var(--accent-color); font-weight: bold; }
-        .quiz-option.correct { background-color: var(--success-color); color: white; border-color: var(--success-color); }
-        .quiz-option.incorrect { background-color: var(--error-color); color: white; border-color: var(--error-color); }
-        
-        #quiz-result { text-align: center; margin-top: 2rem; animation: fadeIn 0.5s; }
-        #quiz-score { font-size: 3rem; color: var(--primary-color); font-weight: 700; }
-        #quiz-feedback { font-size: 1.2rem; margin: 1rem 0 2rem 0; }
-        
-        /* Jogo da Memória */
+
+        .quiz-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .quiz-option:hover::before {
+            left: 100%;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary-color);
+            background-color: rgba(99, 102, 241, 0.05);
+            transform: translateX(5px);
+        }
+
+        .quiz-option.selected {
+            border-color: var(--primary-color);
+            background-color: rgba(99, 102, 241, 0.1);
+            font-weight: 600;
+        }
+
+        .quiz-option.correct {
+            background-color: var(--success-color);
+            color: white;
+            border-color: var(--success-color);
+        }
+
+        .quiz-option.incorrect {
+            background-color: var(--error-color);
+            color: white;
+            border-color: var(--error-color);
+        }
+
+        #quiz-result {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--glass-bg);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--glass-border);
+        }
+
+        #quiz-score {
+            font-size: 4rem;
+            color: var(--primary-color);
+            font-weight: 800;
+            font-family: var(--font-display);
+            margin-bottom: 1rem;
+        }
+
+        #quiz-feedback {
+            font-size: 1.3rem;
+            margin: 1rem 0 2rem 0;
+            color: var(--gray-600);
+        }
+
+        /* ========== JOGO DA MEMÓRIA ========== */
         .memory-game-controls {
             text-align: center;
-            margin-bottom: 2rem;
-            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .memory-stats {
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 2rem;
+            gap: 3rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
         }
+
+        .memory-stat {
+            text-align: center;
+        }
+
+        .memory-stat .label {
+            font-size: 0.9rem;
+            color: var(--gray-600);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .memory-stat .value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-family: var(--font-display);
+        }
+
         .memory-board {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-            max-width: 600px;
+            gap: 1.5rem;
+            max-width: 700px;
             margin: 0 auto;
-            perspective: 1000px; /* For 3D flip effect */
+            perspective: 1000px;
         }
+
         .memory-card {
-            height: 120px;
+            aspect-ratio: 1;
             border-radius: var(--border-radius);
             cursor: pointer;
             position: relative;
             transform-style: preserve-3d;
-            transition: transform 0.6s;
-            box-shadow: var(--glass-shadow);
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: var(--shadow-lg);
         }
+
+        .memory-card:hover {
+            transform: translateY(-5px);
+        }
+
         .memory-card .front-face,
         .memory-card .back-face {
             position: absolute;
@@ -285,64 +730,310 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 3rem;
+            font-size: 2.5rem;
+            box-shadow: var(--shadow-lg);
         }
+
         .memory-card .front-face {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: var(--gradient-primary);
             color: white;
         }
+
         .memory-card .back-face {
-            background-color: var(--accent-color);
-            color: var(--dark-color);
+            background: white;
+            color: var(--primary-color);
             transform: rotateY(180deg);
+            border: 2px solid var(--gray-200);
         }
+
         .memory-card.flip {
             transform: rotateY(180deg);
         }
 
-        /* Footer */
-        footer {
-            background-color: var(--dark-color); color: white;
-            padding: 3rem 0; text-align: center; margin-top: 3rem;
+        .memory-card.matched {
+            opacity: 0.6;
+            cursor: default;
         }
-        .social-links { margin-top: 1rem; }
-        .social-links a { color: white; margin: 0 15px; font-size: 1.8rem; transition: color 0.3s; }
-        .social-links a:hover { color: var(--primary-color); }
 
-        /* Responsividade */
-        @media screen and (max-width: 768px) {
-            section h2 { font-size: 2rem; }
-            nav ul { justify-content: space-around; }
-            nav a { padding: 1rem; }
+        /* ========== SEÇÃO ESTATÍSTICAS ========== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
         }
-        
+
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-radius-lg);
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--shadow-xl);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-card .icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .stat-card h3 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card p {
+            color: var(--gray-600);
+            font-size: 1.1rem;
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--gray-300);
+            text-decoration: none;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--gray-800);
+            color: var(--gray-300);
+        }
+
+        /* ========== RESPONSIVIDADE ========== */
+        @media screen and (max-width: 1024px) {
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            section h2 {
+                font-size: 2.5rem;
+            }
+
+            nav ul {
+                justify-content: space-around;
+            }
+
+            nav a {
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .header-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .memory-stats {
+                gap: 2rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
         @media screen and (max-width: 600px) {
             .memory-board {
                 grid-template-columns: repeat(3, 1fr);
             }
+
+            .header-stats {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media screen and (max-width: 480px) {
-            .quiz-container, .intro-grid { grid-template-columns: 1fr; }
-            header h1 { font-size: 2.5rem; }
-            header p { font-size: 1rem; }
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+
+            header {
+                padding: 4rem 0;
+            }
+
+            section {
+                padding: 3rem 0;
+            }
+
+            .quiz-container,
+            .intro-grid,
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
             .memory-board {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
-            .memory-card {
-                 height: 100px;
+
+            .memory-card .front-face,
+            .memory-card .back-face {
+                font-size: 2rem;
             }
-            .memory-card .front-face, .memory-card .back-face {
-                font-size: 2.5rem;
+
+            #quiz-screen {
+                padding: 2rem;
             }
+
+            .quiz-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .progress-bar {
+                width: 100%;
+            }
+        }
+
+        /* ========== ANIMAÇÕES EXTRAS ========== */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translateY(0); }
+            40%, 43% { transform: translateY(-10px); }
+            70% { transform: translateY(-5px); }
+            90% { transform: translateY(-2px); }
+        }
+
+        .bounce {
+            animation: bounce 2s infinite;
+        }
+
+        /* ========== DARK MODE TOGGLE ========== */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 50px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .theme-toggle i {
+            font-size: 1.2rem;
+            color: var(--primary-color);
         }
     </style>
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
     <header>
         <div class="container">
-            <h1>Geração Alpha Interativa</h1>
-            <p>Explore a primeira geração 100% digital com jogos educativos</p>
+            <div class="header-content">
+                <h1 class="animate__animated animate__fadeInDown">Geração Alpha</h1>
+                <p class="animate__animated animate__fadeInUp animate__delay-1s">
+                    Explore a primeira geração 100% digital nascida entre 2010-2024
+                </p>
+                <div class="header-stats">
+                    <div class="stat-item animate__animated animate__fadeInLeft animate__delay-2s">
+                        <div class="stat-number">2.5B+</div>
+                        <p>Pessoas da Gen Alpha no mundo</p>
+                    </div>
+                    <div class="stat-item animate__animated animate__fadeInUp animate__delay-2s">
+                        <div class="stat-number">100%</div>
+                        <p>Nascidos na era digital</p>
+                    </div>
+                    <div class="stat-item animate__animated animate__fadeInRight animate__delay-2s">
+                        <div class="stat-number">24/7</div>
+                        <p>Conectados desde o nascimento</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -350,46 +1041,166 @@
         <div class="container">
             <ul>
                 <li><a href="#home" class="active"><i class="fas fa-home"></i> Início</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> Sobre</a></li>
                 <li><a href="#quizzes"><i class="fas fa-question-circle"></i> Quizzes</a></li>
                 <li><a href="#memory-game"><i class="fas fa-brain"></i> Jogo da Memória</a></li>
+                <li><a href="#statistics"><i class="fas fa-chart-bar"></i> Estatísticas</a></li>
             </ul>
         </div>
     </nav>
 
     <main class="container">
+        <!-- SEÇÃO HOME -->
         <section id="home" class="active-section">
             <h2>Bem-vindo ao Mundo da Geração Alpha</h2>
             <div class="intro-grid">
                 <div class="intro-card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png" alt="Ícone de Quiz">
-                    <h3>Teste Seu Conhecimento</h3>
-                    <p>Responda quizzes sobre a primeira geração nascida na era dos tablets e da IA.</p>
+                    <div class="icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Aprenda Interativamente</h3>
+                    <p>Descubra as características únicas da primeira geração totalmente digital através de quizzes educativos e jogos interativos.</p>
                 </div>
                 <div class="intro-card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3893/3893122.png" alt="Ícone de Jogo da Memória">
-                    <h3>Desafie sua Memória</h3>
-                    <p>Encontre os pares de ícones que definem o universo da Geração Alpha.</p>
+                    <div class="icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Desafie sua Mente</h3>
+                    <p>Teste sua memória com jogos que exploram os ícones e símbolos que definem o universo digital da Geração Alpha.</p>
+                </div>
+                <div class="intro-card">
+                    <div class="icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Explore Dados</h3>
+                    <p>Analise estatísticas fascinantes sobre comportamentos, preferências e características desta geração revolucionária.</p>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <button class="btn pulse" onclick="document.querySelector('nav a[href=&quot;#about&quot;]').click()">
+                    Começar Exploração
+                </button>
+            </div>
+        </section>
+
+        <!-- SEÇÃO SOBRE -->
+        <section id="about">
+            <h2>Entendendo a Geração Alpha</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>A Primeira Geração Totalmente Digital</h3>
+                    <p>
+                        A Geração Alpha, nascida entre 2010 e 2024, representa um marco na história humana. 
+                        Eles são os primeiros nativos digitais verdadeiros, crescendo em um mundo onde 
+                        inteligência artificial, realidade aumentada e conectividade instantânea são a norma.
+                    </p>
+                    <p>
+                        Diferentemente das gerações anteriores que se adaptaram à tecnologia, os Alphas 
+                        nasceram imersos nela. Tablets, smartphones e assistentes de voz fazem parte do 
+                        seu ambiente natural desde o berço.
+                    </p>
+                    <p>
+                        Esta geração está redefinindo como aprendemos, nos comunicamos e interagimos 
+                        com o mundo ao nosso redor, criando novas formas de expressão e conexão.
+                    </p>
+                </div>
+                <div class="about-features">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Nativos Móveis</h4>
+                            <p>Dominam interfaces touch desde a primeira infância</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>IA Integrada</h4>
+                            <p>Crescem interagindo naturalmente com inteligência artificial</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Conectividade Global</h4>
+                            <p>Pensam e agem de forma globalmente conectada</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Aprendizado Gamificado</h4>
+                            <p>Aprendem melhor através de experiências interativas</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-video"></i>
+                        </div>
+                        <div class="feature-text">
+                            <h4>Conteúdo Visual</h4>
+                            <p>Preferem informações em formato audiovisual</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- SEÇÃO QUIZZES -->
         <section id="quizzes">
-            <h2>Quizzes sobre a Geração Alpha</h2>
+            <h2>Teste Seus Conhecimentos</h2>
             <div class="quiz-container">
                 <div class="quiz-card" data-quiz-id="0">
-                    <h3>Quiz Básico</h3>
-                    <p>05 perguntas sobre características da Gen Alpha</p>
-                    <span class="difficulty easy">Fácil</span>
+                    <h3>Fundamentos da Gen Alpha</h3>
+                    <p>Conceitos básicos sobre a primeira geração digital</p>
+                    <span class="difficulty easy">Iniciante</span>
+                    <div class="quiz-meta">
+                        <div class="quiz-info">
+                            <span><i class="fas fa-clock"></i> 5 min</span>
+                            <span><i class="fas fa-question"></i> 5 questões</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="quiz-card" data-quiz-id="1">
-                    <h3>Tecnologia e Educação</h3>
-                    <p>Como a Gen Alpha aprende e se desenvolve?</p>
-                    <span class="difficulty medium">Médio</span>
+                    <h3>Tecnologia & Comportamento</h3>
+                    <p>Como a tecnologia molda o comportamento Alpha</p>
+                    <span class="difficulty medium">Intermediário</span>
+                    <div class="quiz-meta">
+                        <div class="quiz-info">
+                            <span><i class="fas fa-clock"></i> 8 min</span>
+                            <span><i class="fas fa-question"></i> 7 questões</span>
+                        </div>
+                    </div>
                 </div>
                 <div class="quiz-card" data-quiz-id="2">
-                    <h3>Desafio Expert</h3>
-                    <p>Perguntas avançadas sobre comportamentos</p>
-                    <span class="difficulty hard">Difícil</span>
+                    <h3>Impactos Sociais</h3>
+                    <p>Análise profunda dos impactos sociológicos</p>
+                    <span class="difficulty hard">Avançado</span>
+                    <div class="quiz-meta">
+                        <div class="quiz-info">
+                            <span><i class="fas fa-clock"></i> 12 min</span>
+                            <span><i class="fas fa-question"></i> 10 questões</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="quiz-card" data-quiz-id="3">
+                    <h3>Futuro & Tendências</h3>
+                    <p>Projeções e tendências para o futuro</p>
+                    <span class="difficulty medium">Intermediário</span>
+                    <div class="quiz-meta">
+                        <div class="quiz-info">
+                            <span><i class="fas fa-clock"></i> 10 min</span>
+                            <span><i class="fas fa-question"></i> 8 questões</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -398,336 +1209,729 @@
                     <h3 id="quiz-title">Quiz</h3>
                     <div class="quiz-progress-container">
                         <span id="quiz-progress-text">1/5</span>
-                        <div class="progress-bar"><div id="progress-fill" class="progress-fill"></div></div>
+                        <div class="progress-bar">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="quiz-question" id="quiz-question">Pergunta aparecerá aqui</div>
                 <div class="quiz-options" id="quiz-options"></div>
-                <div style="text-align: center; margin-top: 1rem;">
-                    <button id="next-btn" class="btn hidden">Próxima</button>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button id="next-btn" class="btn hidden">Próxima Pergunta</button>
                 </div>
                 <div id="quiz-result" class="hidden">
-                    <h3>Seu Resultado:</h3>
+                    <h3>Resultado Final</h3>
                     <p id="quiz-score">0/5</p>
-                    <p id="quiz-feedback"></p>
-                    <button id="reset-quiz-btn" class="btn">Fazer outro quiz</button>
+                    <p id="quiz-feedback">Feedback aparecerá aqui</p>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <button id="reset-quiz-btn" class="btn">Tentar Novamente</button>
+                        <button id="new-quiz-btn" class="btn btn-secondary">Novo Quiz</button>
+                    </div>
                 </div>
             </div>
         </section>
 
+        <!-- SEÇÃO JOGO DA MEMÓRIA -->
         <section id="memory-game">
             <h2>Jogo da Memória Alpha</h2>
             <div class="memory-game-controls">
-                <span>Movimentos: <strong id="moves-count">0</strong></span>
-                <button id="reset-memory-game" class="btn">Reiniciar Jogo</button>
-            </div>
-            <div class="memory-board" id="memory-board">
+                <div class="memory-stats">
+                    <div class="memory-stat">
+                        <div class="label">Movimentos</div>
+                        <div class="value" id="moves-count">0</div>
+                    </div>
+                    <div class="memory-stat">
+                        <div class="label">Tempo</div>
+                        <div class="value" id="time-count">00:00</div>
+                    </div>
+                    <div class="memory-stat">
+                        <div class="label">Pares</div>
+                        <div class="value" id="pairs-count">0/8</div>
+                    </div>
                 </div>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button id="reset-memory-game" class="btn">Novo Jogo</button>
+                    <button id="hint-btn" class="btn btn-secondary">Dica (3x)</button>
+                </div>
+            </div>
+            <div class="memory-board" id="memory-board"></div>
+            <div id="memory-result" class="hidden" style="text-align: center; margin-top: 2rem; padding: 2rem; background: var(--glass-bg); border-radius: var(--border-radius); backdrop-filter: blur(20px);">
+                <h3 style="color: var(--primary-color); font-size: 2rem; margin-bottom: 1rem;">🎉 Parabéns!</h3>
+                <p id="memory-final-stats" style="font-size: 1.2rem; margin-bottom: 2rem;"></p>
+                <button id="play-again-btn" class="btn">Jogar Novamente</button>
+            </div>
+        </section>
+
+        <!-- SEÇÃO ESTATÍSTICAS -->
+        <section id="statistics">
+            <h2>Dados da Geração Alpha</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>2.5B</h3>
+                    <p>População global estimada da Geração Alpha</p>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>92%</h3>
+                    <p>Têm acesso a dispositivos móveis antes dos 2 anos</p>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">
+                        <i class="fas fa-video"></i>
+                    </div>
+                    <h3>7h</h3>
+                    <p>Tempo médio diário de tela para crianças Alpha</p>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>85%</h3>
+                    <p>Preferem aprendizado visual e interativo</p>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>76%</h3>
+                    <p>Interagem com IA regularmente (Alexa, Siri)</p>
+                </div>
+                <div class="stat-card">
+                    <div class="icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>15</h3>
+                    <p>Idiomas médios expostos através de conteúdo digital</p>
+                </div>
+            </div>
+            
+            <div style="background: var(--glass-bg); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: var(--border-radius-lg); padding: 3rem; margin-top: 3rem; text-align: center;">
+                <h3 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 2rem; color: var(--dark-color);">
+                    Curiosidades Alpha
+                </h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; text-align: left;">
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 1rem; color: var(--primary-color);">🎮 Gaming Natural</h4>
+                        <p>Primeira geração que não diferencia entre mundo físico e digital nos jogos</p>
+                    </div>
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 1rem; color: var(--primary-color);">🌍 Cidadãos Globais</h4>
+                        <p>Desenvolvem identidade cultural mais global que local desde cedo</p>
+                    </div>
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 1rem; color: var(--primary-color);">🤖 IA Companions</h4>
+                        <p>Veem assistentes de IA como companheiros, não ferramentas</p>
+                    </div>
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 1rem; color: var(--primary-color);">📱 Touch Natives</h4>
+                        <p>Preferem interfaces touch a mouse e teclado intuitivamente</p>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Geração Alpha - Todos os direitos reservados</p>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Geração Alpha</h3>
+                    <p>Explorando a primeira geração totalmente digital da história humana através de experiências educativas interativas.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Recursos</h3>
+                    <p><a href="#quizzes">Quizzes Interativos</a></p>
+                    <p><a href="#memory-game">Jogo da Memória</a></p>
+                    <p><a href="#statistics">Dados e Estatísticas</a></p>
+                    <p><a href="#about">Sobre a Gen Alpha</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Tecnologias</h3>
+                    <p>Interface Responsiva</p>
+                    <p>Acessibilidade Web</p>
+                    <p>Design Moderno</p>
+                    <p>Gamificação Educativa</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <p>Para mais informações sobre a Geração Alpha e recursos educacionais</p>
+                    <p style="margin-top: 1rem; color: var(--primary-color);">
+                        <i class="fas fa-envelope"></i> contato@gen-alpha.edu
+                    </p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Geração Alpha Interactive. Desenvolvido para fins educacionais.</p>
             </div>
         </div>
     </footer>
 
+    <!-- VLibras para Acessibilidade -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        
-        // --- LÓGICA DE NAVEGAÇÃO ---
-        const navLinks = document.querySelectorAll('nav a');
-        const sections = document.querySelectorAll('main section');
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
 
-        function updateActiveNav(targetId) {
-            navLinks.forEach(link => {
-                link.classList.toggle('active', link.getAttribute('href') === targetId);
-            });
-            sections.forEach(section => {
-                section.classList.toggle('active-section', `#${section.id}` === targetId);
-            });
-        }
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // ========== VARIÁVEIS GLOBAIS ==========
+            let gameStats = {
+                quizzesCompleted: 0,
+                bestMemoryTime: null,
+                totalScore: 0
+            };
 
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href');
-                updateActiveNav(targetId);
-                // Carrega o jogo quando a seção se torna ativa
+            // ========== NAVEGAÇÃO ==========
+            const navLinks = document.querySelectorAll('nav a');
+            const sections = document.querySelectorAll('main section');
+
+            function updateActiveNav(targetId) {
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === targetId);
+                });
+                sections.forEach(section => {
+                    section.classList.toggle('active-section', `#${section.id}` === targetId);
+                });
+                
+                // Inicializa jogos quando necessário
                 if (targetId === '#memory-game') {
                     initMemoryGame();
                 }
-            });
-        });
-        
-        // --- LÓGICA DO QUIZ ---
-        const quizzesData = [
-            { // Quiz 0 - Fácil
-                title: "Conceitos Básicos",
-                questions: [
-                    { q: "Qual o período de nascimento da Geração Alpha?", o: ["2010-2024", "2000-2009", "1995-1999"], a: 0 },
-                    { q: "Qual dispositivo icônico foi lançado no mesmo ano que a Geração Alpha começou?", o: ["iPhone", "iPad", "Kindle"], a: 1 },
-                    { q: "A Geração Alpha é sucessora de qual geração?", o: ["Geração Z", "Millennials", "Geração X"], a: 0 },
-                    { q: "Qual plataforma de vídeo é extremamente popular entre as crianças Alpha?", o: ["Facebook Watch", "Netflix", "YouTube"], a: 2 },
-                    { q: "Como a Geração Alpha também é conhecida?", o: ["Geração de Vidro", "Nativos da Nuvem", "Geração Silenciosa"], a: 0 }
-                ]
-            },
-            { // Quiz 1 - Médio
-                title: "Tecnologia e Educação",
-                questions: [
-                    { q: "O que é 'sharenting'?", o: ["Pais compartilhando excessivamente sobre os filhos online", "Crianças que compartilham brinquedos", "Software de controle parental"], a: 0 },
-                    { q: "Qual habilidade a Geração Alpha tende a desenvolver mais rapidamente?", o: ["Caligrafia", "Interação social face a face", "Alfabetização digital"], a: 2 },
-                    { q: "O aprendizado 'gamificado' refere-se a:", o: ["Aprender jogando videogame o dia todo", "Usar elementos de jogos em atividades educacionais", "Proibir jogos na escola"], a: 1 },
-                    { q: "Assistentes de voz como Alexa e Siri são, para a Geração Alpha:", o: ["Uma novidade rara", "Ferramentas complexas", "Parte integrante do cotidiano"], a: 2 },
-                    { q: "Qual a maior preocupação dos pais sobre a criação dos Alphas?", o: ["Falta de acesso à tecnologia", "Tempo excessivo de tela", "Dificuldade em usar a internet"], a: 1 }
-                ]
-            },
-            { // Quiz 2 - Difícil
-                title: "Desafio Expert",
-                questions: [
-                    { q: "Quem cunhou o termo 'Geração Alpha'?", o: ["Mark McCrindle", "Neil Howe", "William Strauss"], a: 0 },
-                    { q: "Qual o impacto da IA na educação Alpha?", o: ["Personalização do aprendizado em escala", "Substituição total de professores", "Nenhum impacto significativo"], a: 0 },
-                    { q: "Qual fenômeno psicológico está associado à constante exposição a conteúdo curto (como TikTok)?", o: ["Aumento da capacidade de foco", "Redução do 'attention span' (período de atenção)", "Aversão a tecnologia"], a: 1 },
-                    { q: "Até 2025, a Geração Alpha será a mais... do que qualquer geração anterior.", o: ["com facilidade em usar ferramentas digitais", "rica", "familiarizada com máquinas de escrever"], a: 0 },
-                    { q: "A interação com a tecnologia desde o berço pode influenciar o cérebro Alpha em qual aspecto?", o: ["Aumentando a neuroplasticidade", "Diminuindo a criatividade", "Limitando a capacidade de multitarefa"], a: 0 }
-                ]
             }
-        ];
 
-        const quizContainer = document.querySelector('.quiz-container');
-        const quizScreen = document.getElementById('quiz-screen');
-        const quizTitle = document.getElementById('quiz-title');
-        const quizQuestionEl = document.getElementById('quiz-question');
-        const quizOptionsEl = document.getElementById('quiz-options');
-        const nextBtn = document.getElementById('next-btn');
-        const quizResultEl = document.getElementById('quiz-result');
-        const resetQuizBtn = document.getElementById('reset-quiz-btn');
-        const progressText = document.getElementById('quiz-progress-text');
-        const progressFill = document.getElementById('progress-fill');
-
-        let currentQuiz, currentQuestionIndex, score;
-
-        quizContainer.addEventListener('click', (e) => {
-            const card = e.target.closest('.quiz-card');
-            if (card) {
-                startQuiz(parseInt(card.dataset.quizId));
-            }
-        });
-
-        function startQuiz(quizId) {
-            currentQuiz = quizzesData[quizId];
-            questions = currentQuiz.questions;
-            currentQuestionIndex = 0;
-            score = 0;
-
-            quizContainer.classList.add('hidden');
-            quizResultEl.classList.add('hidden');
-            quizScreen.classList.remove('hidden');
-            quizTitle.textContent = currentQuiz.title;
-            
-            loadQuestion();
-        }
-
-        function loadQuestion() {
-            quizOptionsEl.innerHTML = '';
-            nextBtn.classList.add('hidden');
-            
-            const question = questions[currentQuestionIndex];
-            quizQuestionEl.textContent = question.q;
-            
-            progressText.textContent = `${currentQuestionIndex + 1}/${questions.length}`;
-            progressFill.style.width = `${((currentQuestionIndex + 1) / questions.length) * 100}%`;
-
-            question.o.forEach((option, index) => {
-                const optionEl = document.createElement('div');
-                optionEl.classList.add('quiz-option');
-                optionEl.textContent = option;
-                optionEl.dataset.index = index;
-                optionEl.addEventListener('click', selectOption);
-                quizOptionsEl.appendChild(optionEl);
-            });
-        }
-        
-        function selectOption(e) {
-            const selected = e.target;
-            const correctIndex = questions[currentQuestionIndex].a;
-            
-            if (parseInt(selected.dataset.index) === correctIndex) {
-                score++;
-                selected.classList.add('correct');
-            } else {
-                selected.classList.add('incorrect');
-                quizOptionsEl.querySelector(`[data-index='${correctIndex}']`).classList.add('correct');
-            }
-            
-            Array.from(quizOptionsEl.children).forEach(child => {
-                child.removeEventListener('click', selectOption);
-                child.style.cursor = 'default';
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = link.getAttribute('href');
+                    updateActiveNav(targetId);
+                });
             });
 
-            nextBtn.classList.remove('hidden');
-        }
+            // ========== DADOS DOS QUIZZES ==========
+            const quizzesData = [
+                {
+                    title: "Fundamentos da Gen Alpha",
+                    questions: [
+                        { q: "Em que período nasceu a Geração Alpha?", o: ["2010-2024", "2005-2015", "2015-2025", "2000-2010"], a: 0 },
+                        { q: "Qual dispositivo foi lançado em 2010, mesmo ano do início da Gen Alpha?", o: ["iPhone", "iPad", "Kindle", "Android"], a: 1 },
+                        { q: "A Geração Alpha é sucessora de qual geração?", o: ["Geração Z", "Millennials", "Geração X", "Baby Boomers"], a: 0 },
+                        { q: "Qual plataforma de vídeo é mais popular entre crianças Alpha?", o: ["Facebook", "Netflix", "YouTube", "TikTok"], a: 2 },
+                        { q: "Como a Gen Alpha também é conhecida?", o: ["Geração de Vidro", "Nativos da Nuvem", "Geração Conectada", "Digital Natives"], a: 0 }
+                    ]
+                },
+                {
+                    title: "Tecnologia & Comportamento",
+                    questions: [
+                        { q: "O que significa 'sharenting'?", o: ["Pais compartilhando sobre filhos nas redes", "Crianças compartilhando brinquedos", "Compartilhar senhas", "Aplicativo de controle parental"], a: 0 },
+                        { q: "Qual habilidade a Gen Alpha desenvolve mais rapidamente?", o: ["Escrita à mão", "Interação social presencial", "Alfabetização digital", "Leitura tradicional"], a: 2 },
+                        { q: "Gamificação na educação significa:", o: ["Jogar videogames na escola", "Usar elementos de jogos no aprendizado", "Proibir jogos eletrônicos", "Competições esportivas"], a: 1 },
+                        { q: "Para a Gen Alpha, assistentes de voz são:", o: ["Tecnologia complexa", "Ferramentas raras", "Parte natural do cotidiano", "Brinquedos caros"], a: 2 },
+                        { q: "Principal preocupação dos pais sobre Gen Alpha:", o: ["Falta de tecnologia", "Tempo excessivo de tela", "Dificuldade com internet", "Custo dos dispositivos"], a: 1 },
+                        { q: "Qual a preferência de aprendizado da Gen Alpha?", o: ["Apenas texto", "Audio somente", "Visual e interativo", "Métodos tradicionais"], a: 2 },
+                        { q: "A atenção da Gen Alpha é melhor mantida com:", o: ["Longas palestras", "Conteúdo fragmentado", "Textos extensos", "Aulas expositivas"], a: 1 }
+                    ]
+                },
+                {
+                    title: "Impactos Sociais",
+                    questions: [
+                        { q: "Quem criou o termo 'Geração Alpha'?", o: ["Mark McCrindle", "Neil Howe", "William Strauss", "Don Tapscott"], a: 0 },
+                        { q: "Como a IA impacta a educação Alpha?", o: ["Personalização em escala", "Substitui professores", "Nenhum impacto", "Dificulta aprendizado"], a: 0 },
+                        { q: "Conteúdo curto (TikTok) pode causar:", o: ["Maior foco", "Redução do attention span", "Aversão à tecnologia", "Melhor memória"], a: 1 },
+                        { q: "A Gen Alpha será a mais... da história:", o: ["Rica financeiramente", "Tecnologicamente fluente", "Tradicionalista", "Isolada socialmente"], a: 1 },
+                        { q: "Interação precoce com IA pode:", o: ["Aumentar neuroplasticidade", "Diminuir criatividade", "Limitar multitarefa", "Causar dependência"], a: 0 },
+                        { q: "Característica social única da Gen Alpha:", o: ["Isolamento digital", "Conexões globais desde cedo", "Preferência por cartas", "Aversão a redes sociais"], a: 1 },
+                        { q: "Impacto na linguagem da Gen Alpha:", o: ["Volta ao latim", "Criação de novas gírias digitais", "Abandono da escrita", "Uso apenas de emojis"], a: 1 },
+                        { q: "Relacionamento com autoridade:", o: ["Mais hierárquico", "Questionamento constante", "Obediência total", "Indiferença completa"], a: 1 },
+                        { q: "Principal meio de expressão criativa:", o: ["Pintura tradicional", "Plataformas digitais", "Música clássica", "Teatro"], a: 1 },
+                        { q: "Atitude em relação à privacidade:", o: ["Extremamente cautelosos", "Compartilhamento natural", "Totalmente privados", "Indiferentes"], a: 1 }
+                    ]
+                },
+                {
+                    title: "Futuro & Tendências",
+                    questions: [
+                        { q: "Até 2030, a Gen Alpha representará que % da população?", o: ["10%", "15%", "20%", "25%"], a: 2 },
+                        { q: "Profissão mais provável para Gen Alpha:", o: ["Contador tradicional", "Criador de conteúdo digital", "Operário de fábrica", "Vendedor porta a porta"], a: 1 },
+                        { q: "Tendência educacional para Gen Alpha:", o: ["Volta às carteiras", "Realidade virtual integrada", "Apenas livros", "Proibição de tecnologia"], a: 1 },
+                        { q: "Modelo de trabalho preferido:", o: ["Presencial 8h/dia", "Híbrido e flexível", "Apenas remoto", "Trabalho manual"], a: 1 },
+                        { q: "Relação com sustentabilidade:", o: ["Indiferença total", "Preocupação integrada", "Apenas consumo", "Negação climática"], a: 1 },
+                        { q: "Comunicação predominante será:", o: ["Cartas manuscritas", "Visual e imersiva", "Apenas telefone", "Telegrama"], a: 1 },
+                        { q: "Maior desafio futuro da Gen Alpha:", o: ["Falta de tecnologia", "Sobrecarga de informação", "Isolamento total", "Volta ao analógico"], a: 1 },
+                        { q: "Inovação que mais impactará Gen Alpha:", o: ["Máquina de escrever", "IA generativa avançada", "Telefone fixo", "Rádio AM"], a: 1 }
+                    ]
+                }
+            ];
 
-        nextBtn.addEventListener('click', () => {
-            currentQuestionIndex++;
-            if (currentQuestionIndex < questions.length) {
+            // ========== LÓGICA DO QUIZ ==========
+            const quizContainer = document.querySelector('.quiz-container');
+            const quizScreen = document.getElementById('quiz-screen');
+            const quizTitle = document.getElementById('quiz-title');
+            const quizQuestionEl = document.getElementById('quiz-question');
+            const quizOptionsEl = document.getElementById('quiz-options');
+            const nextBtn = document.getElementById('next-btn');
+            const quizResultEl = document.getElementById('quiz-result');
+            const resetQuizBtn = document.getElementById('reset-quiz-btn');
+            const newQuizBtn = document.getElementById('new-quiz-btn');
+            const progressText = document.getElementById('quiz-progress-text');
+            const progressFill = document.getElementById('progress-fill');
+
+            let currentQuiz, currentQuestionIndex, score, timeLeft, quizTimer;
+
+            // Event listeners para iniciar quiz
+            quizContainer.addEventListener('click', (e) => {
+                const card = e.target.closest('.quiz-card');
+                if (card) {
+                    startQuiz(parseInt(card.dataset.quizId));
+                }
+            });
+
+            function startQuiz(quizId) {
+                currentQuiz = quizzesData[quizId];
+                currentQuestionIndex = 0;
+                score = 0;
+
+                quizContainer.classList.add('hidden');
+                quizResultEl.classList.add('hidden');
+                quizScreen.classList.remove('hidden');
+                quizTitle.textContent = currentQuiz.title;
+                
                 loadQuestion();
-            } else {
-                showResults();
             }
-        });
 
-        function showResults() {
-            quizQuestionEl.textContent = '';
-            quizOptionsEl.innerHTML = '';
-            nextBtn.classList.add('hidden');
-            quizResultEl.classList.remove('hidden');
+            function loadQuestion() {
+                if (currentQuestionIndex >= currentQuiz.questions.length) {
+                    showResults();
+                    return;
+                }
+
+                quizOptionsEl.innerHTML = '';
+                nextBtn.classList.add('hidden');
+                
+                const question = currentQuiz.questions[currentQuestionIndex];
+                quizQuestionEl.textContent = question.q;
+                
+                progressText.textContent = `${currentQuestionIndex + 1}/${currentQuiz.questions.length}`;
+                progressFill.style.width = `${((currentQuestionIndex + 1) / currentQuiz.questions.length) * 100}%`;
+
+                question.o.forEach((option, index) => {
+                    const optionEl = document.createElement('div');
+                    optionEl.classList.add('quiz-option');
+                    optionEl.textContent = option;
+                    optionEl.dataset.index = index;
+                    optionEl.addEventListener('click', selectOption);
+                    quizOptionsEl.appendChild(optionEl);
+                });
+            }
             
-            const scorePercent = (score / questions.length) * 100;
-            document.getElementById('quiz-score').textContent = `${score}/${questions.length}`;
-            
-            let feedback = '';
-            if(scorePercent === 100) feedback = "Excelente! Você é um expert!";
-            else if (scorePercent >= 60) feedback = "Muito bom! Você conhece bem o assunto.";
-            else feedback = "Bom esforço! Continue aprendendo.";
-            document.getElementById('quiz-feedback').textContent = feedback;
-        }
+            function selectOption(e) {
+                const selected = e.target;
+                const correctIndex = currentQuiz.questions[currentQuestionIndex].a;
+                
+                if (parseInt(selected.dataset.index) === correctIndex) {
+                    score++;
+                    selected.classList.add('correct');
+                } else {
+                    selected.classList.add('incorrect');
+                    quizOptionsEl.querySelector(`[data-index='${correctIndex}']`).classList.add('correct');
+                }
+                
+                // Remove event listeners de todas as opções
+                Array.from(quizOptionsEl.children).forEach(child => {
+                    child.removeEventListener('click', selectOption);
+                    child.style.cursor = 'default';
+                });
 
-        resetQuizBtn.addEventListener('click', () => {
-            quizScreen.classList.add('hidden');
-            quizContainer.classList.remove('hidden');
-        });
+                nextBtn.classList.remove('hidden');
+            }
 
-        // --- LÓGICA DO JOGO DA MEMÓRIA ---
-        const memoryBoard = document.getElementById('memory-board');
-        const movesCountSpan = document.getElementById('moves-count');
-        const resetMemoryBtn = document.getElementById('reset-memory-game');
-
-        const cardIcons = [
-            'fa-tablet-alt', 'fa-gamepad', 'fa-robot',
-            'fa-wifi', 'fa-camera-retro', 'fa-headphones'
-        ];
-        
-        let hasFlippedCard = false;
-        let lockBoard = false;
-        let firstCard, secondCard;
-        let moves = 0;
-
-        function createBoard() {
-            memoryBoard.innerHTML = '';
-            moves = 0;
-            movesCountSpan.textContent = moves;
-            const gameIcons = [...cardIcons, ...cardIcons];
-            gameIcons.sort(() => 0.5 - Math.random());
-
-            gameIcons.forEach(icon => {
-                const cardElement = document.createElement('div');
-                cardElement.classList.add('memory-card');
-                cardElement.dataset.icon = icon;
-
-                cardElement.innerHTML = `
-                    <div class="front-face">
-                        <i class="fas fa-question"></i>
-                    </div>
-                    <div class="back-face">
-                        <i class="fas ${icon}"></i>
-                    </div>
-                `;
-                cardElement.addEventListener('click', flipCard);
-                memoryBoard.appendChild(cardElement);
+            nextBtn.addEventListener('click', () => {
+                currentQuestionIndex++;
+                loadQuestion();
             });
-        }
 
-        function flipCard() {
-            if (lockBoard || this === firstCard) return;
-
-            this.classList.add('flip');
-
-            if (!hasFlippedCard) {
-                hasFlippedCard = true;
-                firstCard = this;
-                return;
+            function showResults() {
+                quizQuestionEl.textContent = '';
+                quizOptionsEl.innerHTML = '';
+                nextBtn.classList.add('hidden');
+                quizResultEl.classList.remove('hidden');
+                
+                const scorePercent = (score / currentQuiz.questions.length) * 100;
+                document.getElementById('quiz-score').textContent = `${score}/${currentQuiz.questions.length}`;
+                
+                let feedback = '';
+                if (scorePercent === 100) {
+                    feedback = "🎉 Perfeito! Você é um verdadeiro especialista em Geração Alpha!";
+                } else if (scorePercent >= 80) {
+                    feedback = "🌟 Excelente! Você tem um ótimo conhecimento sobre o assunto!";
+                } else if (scorePercent >= 60) {
+                    feedback = "👍 Muito bom! Você está no caminho certo para entender a Gen Alpha!";
+                } else if (scorePercent >= 40) {
+                    feedback = "📚 Bom esforço! Continue explorando para aprender mais!";
+                } else {
+                    feedback = "🎯 Continue tentando! Cada quiz é uma oportunidade de aprender!";
+                }
+                
+                document.getElementById('quiz-feedback').textContent = feedback;
+                gameStats.quizzesCompleted++;
+                gameStats.totalScore += score;
             }
 
-            secondCard = this;
-            moves++;
-            movesCountSpan.textContent = moves;
+            resetQuizBtn.addEventListener('click', () => {
+                startQuiz(quizzesData.findIndex(quiz => quiz.title === currentQuiz.title));
+            });
 
-            checkForMatch();
-        }
+            newQuizBtn.addEventListener('click', () => {
+                quizScreen.classList.add('hidden');
+                quizContainer.classList.remove('hidden');
+            });
 
-        function checkForMatch() {
-            let isMatch = firstCard.dataset.icon === secondCard.dataset.icon;
-            isMatch ? disableCards() : unflipCards();
-        }
+            // ========== JOGO DA MEMÓRIA ==========
+            const memoryBoard = document.getElementById('memory-board');
+            const movesCountSpan = document.getElementById('moves-count');
+            const timeCountSpan = document.getElementById('time-count');
+            const pairsCountSpan = document.getElementById('pairs-count');
+            const resetMemoryBtn = document.getElementById('reset-memory-game');
+            const hintBtn = document.getElementById('hint-btn');
+            const memoryResult = document.getElementById('memory-result');
+            const memoryFinalStats = document.getElementById('memory-final-stats');
+            const playAgainBtn = document.getElementById('play-again-btn');
 
-        function disableCards() {
-            firstCard.removeEventListener('click', flipCard);
-            secondCard.removeEventListener('click', flipCard);
-            resetBoard();
-        }
+            const cardIcons = [
+                'fa-tablet-alt', 'fa-gamepad', 'fa-robot', 'fa-wifi',
+                'fa-mobile-alt', 'fa-headphones', 'fa-camera', 'fa-laptop'
+            ];
+            
+            let hasFlippedCard = false;
+            let lockBoard = false;
+            let firstCard, secondCard;
+            let moves = 0;
+            let pairs = 0;
+            let gameTime = 0;
+            let gameTimer = null;
+            let hintsLeft = 3;
 
-        function unflipCards() {
-            lockBoard = true;
-            setTimeout(() => {
-                firstCard.classList.remove('flip');
-                secondCard.classList.remove('flip');
+            function createBoard() {
+                memoryBoard.innerHTML = '';
+                memoryResult.classList.add('hidden');
+                moves = 0;
+                pairs = 0;
+                gameTime = 0;
+                hintsLeft = 3;
+                
+                updateMemoryDisplay();
+                
+                const gameIcons = [...cardIcons, ...cardIcons];
+                gameIcons.sort(() => 0.5 - Math.random());
+
+                gameIcons.forEach(icon => {
+                    const cardElement = document.createElement('div');
+                    cardElement.classList.add('memory-card');
+                    cardElement.dataset.icon = icon;
+
+                    cardElement.innerHTML = `
+                        <div class="front-face">
+                            <i class="fas fa-question"></i>
+                        </div>
+                        <div class="back-face">
+                            <i class="fas ${icon}"></i>
+                        </div>
+                    `;
+                    cardElement.addEventListener('click', flipCard);
+                    memoryBoard.appendChild(cardElement);
+                });
+            }
+
+            function updateMemoryDisplay() {
+                movesCountSpan.textContent = moves;
+                timeCountSpan.textContent = formatTime(gameTime);
+                pairsCountSpan.textContent = `${pairs}/${cardIcons.length}`;
+                hintBtn.textContent = `Dica (${hintsLeft}x)`;
+                hintBtn.disabled = hintsLeft === 0;
+            }
+
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = seconds % 60;
+                return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            function startTimer() {
+                if (!gameTimer) {
+                    gameTimer = setInterval(() => {
+                        gameTime++;
+                        updateMemoryDisplay();
+                    }, 1000);
+                }
+            }
+
+            function stopTimer() {
+                if (gameTimer) {
+                    clearInterval(gameTimer);
+                    gameTimer = null;
+                }
+            }
+
+            function flipCard() {
+                if (lockBoard || this === firstCard || this.classList.contains('matched')) return;
+
+                startTimer();
+                this.classList.add('flip');
+
+                if (!hasFlippedCard) {
+                    hasFlippedCard = true;
+                    firstCard = this;
+                    return;
+                }
+
+                secondCard = this;
+                moves++;
+                updateMemoryDisplay();
+
+                checkForMatch();
+            }
+
+            function checkForMatch() {
+                let isMatch = firstCard.dataset.icon === secondCard.dataset.icon;
+                isMatch ? disableCards() : unflipCards();
+            }
+
+            function disableCards() {
+                firstCard.removeEventListener('click', flipCard);
+                secondCard.removeEventListener('click', flipCard);
+                firstCard.classList.add('matched');
+                secondCard.classList.add('matched');
+                
+                pairs++;
+                updateMemoryDisplay();
+                
+                if (pairs === cardIcons.length) {
+                    setTimeout(endGame, 500);
+                }
+                
                 resetBoard();
-            }, 1200);
-        }
+            }
 
-        function resetBoard() {
-            [hasFlippedCard, lockBoard] = [false, false];
-            [firstCard, secondCard] = [null, null];
-        }
-        
-        function initMemoryGame() {
-            createBoard();
-            lockBoard = true; // Bloqueia o tabuleiro para a pré-visualização
-
-            const cards = memoryBoard.querySelectorAll('.memory-card');
-
-            // Vira todas as cartas para mostrar os ícones
-            cards.forEach(card => card.classList.add('flip'));
-
-            // Após 1 segundo, vira todas de volta
-            setTimeout(() => {
-                cards.forEach(card => card.classList.remove('flip'));
-
-                // Espera a animação de virar terminar para desbloquear o tabuleiro
+            function unflipCards() {
+                lockBoard = true;
                 setTimeout(() => {
-                    lockBoard = false;
-                }, 600); // Deve corresponder à duração da transição do CSS
+                    firstCard.classList.remove('flip');
+                    secondCard.classList.remove('flip');
+                    resetBoard();
+                }, 1200);
+            }
 
-            }, 2000); // 1 segundo de pré-visualização
-        }
-        
-        resetMemoryBtn.addEventListener('click', initMemoryGame);
-        
-        // Carrega o primeiro estado da página
-        updateActiveNav('#home');
-    });
+            function resetBoard() {
+                [hasFlippedCard, lockBoard] = [false, false];
+                [firstCard, secondCard] = [null, null];
+            }
+
+            function endGame() {
+                stopTimer();
+                memoryFinalStats.textContent = `Você completou o jogo em ${moves} movimentos e ${formatTime(gameTime)}!`;
+                memoryResult.classList.remove('hidden');
+                
+                if (!gameStats.bestMemoryTime || gameTime < gameStats.bestMemoryTime) {
+                    gameStats.bestMemoryTime = gameTime;
+                }
+            }
+
+            function showHint() {
+                if (hintsLeft > 0) {
+                    const unmatchedCards = Array.from(memoryBoard.children).filter(card => 
+                        !card.classList.contains('matched') && !card.classList.contains('flip')
+                    );
+                    
+                    if (unmatchedCards.length >= 2) {
+                        // Encontra um par e mostra por 2 segundos
+                        const icons = {};
+                        unmatchedCards.forEach(card => {
+                            const icon = card.dataset.icon;
+                            if (!icons[icon]) icons[icon] = [];
+                            icons[icon].push(card);
+                        });
+                        
+                        for (let icon in icons) {
+                            if (icons[icon].length >= 2) {
+                                const pair = icons[icon].slice(0, 2);
+                                pair.forEach(card => card.classList.add('flip'));
+                                
+                                setTimeout(() => {
+                                    pair.forEach(card => card.classList.remove('flip'));
+                                }, 2000);
+                                
+                                hintsLeft--;
+                                updateMemoryDisplay();
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            function initMemoryGame() {
+                createBoard();
+                lockBoard = true;
+
+                const cards = memoryBoard.querySelectorAll('.memory-card');
+                cards.forEach(card => card.classList.add('flip'));
+
+                setTimeout(() => {
+                    cards.forEach(card => card.classList.remove('flip'));
+                    setTimeout(() => {
+                        lockBoard = false;
+                    }, 600);
+                }, 2000);
+            }
+            
+            resetMemoryBtn.addEventListener('click', initMemoryGame);
+            playAgainBtn.addEventListener('click', initMemoryGame);
+            hintBtn.addEventListener('click', showHint);
+
+            // ========== THEME TOGGLE ==========
+            const themeToggle = document.getElementById('theme-toggle');
+            let isDarkMode = false;
+
+            themeToggle.addEventListener('click', () => {
+                isDarkMode = !isDarkMode;
+                document.body.classList.toggle('dark-mode', isDarkMode);
+                
+                const icon = themeToggle.querySelector('i');
+                icon.className = isDarkMode ? 'fas fa-sun' : 'fas fa-moon';
+            });
+
+            // ========== EFEITOS E ANIMAÇÕES ==========
+            
+            // Parallax suave no header
+            window.addEventListener('scroll', () => {
+                const scrolled = window.pageYOffset;
+                const header = document.querySelector('header');
+                if (header) {
+                    header.style.transform = `translateY(${scrolled * 0.5}px)`;
+                }
+            });
+
+            // Animação de entrada para cards
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
+                    }
+                });
+            }, observerOptions);
+
+            // Observa todos os cards
+            document.querySelectorAll('.intro-card, .quiz-card, .stat-card, .about-text, .about-features').forEach(el => {
+                observer.observe(el);
+            });
+
+            // ========== INICIALIZAÇÃO ==========
+            updateActiveNav('#home');
+            
+            // Preload de algumas animações
+            setTimeout(() => {
+                document.querySelectorAll('.intro-card').forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('animate__animated', 'animate__fadeInUp');
+                    }, index * 200);
+                });
+            }, 500);
+
+            // Easter egg - Konami code
+            let konamiCode = [];
+            const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65]; // ↑↑↓↓←→←→BA
+            
+            document.addEventListener('keydown', (e) => {
+                konamiCode.push(e.keyCode);
+                if (konamiCode.length > konamiSequence.length) {
+                    konamiCode.shift();
+                }
+                
+                if (konamiCode.toString() === konamiSequence.toString()) {
+                    // Easter egg ativado!
+                    document.body.style.animation = 'hue-rotate 3s infinite linear';
+                    setTimeout(() => {
+                        document.body.style.animation = '';
+                        alert('🎉 Easter Egg! Você descobriu o código secreto da Geração Alpha! 🚀');
+                    }, 3000);
+                }
+            });
+
+            // Adiciona animação de hue rotate
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes hue-rotate {
+                    0% { filter: hue-rotate(0deg); }
+                    100% { filter: hue-rotate(360deg); }
+                }
+            `;
+            document.head.appendChild(style);
+
+            // ========== PERFORMANCE E PWA READY ==========
+            
+            // Service Worker registration (preparado para PWA)
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    // Aqui você registraria seu service worker
+                    console.log('PWA Ready - Service Worker pode ser registrado');
+                });
+            }
+
+            // Lazy loading para imagens futuras
+            if ('IntersectionObserver' in window) {
+                const imageObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src;
+                            img.classList.remove('lazy');
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+
+                document.querySelectorAll('img[data-src]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+
+            // Preconnect para otimização
+            const preconnectLinks = [
+                'https://fonts.googleapis.com',
+                'https://cdnjs.cloudflare.com'
+            ];
+
+            preconnectLinks.forEach(href => {
+                const link = document.createElement('link');
+                link.rel = 'preconnect';
+                link.href = href;
+                document.head.appendChild(link);
+            });
+
+            console.log('🚀 Site da Geração Alpha carregado com sucesso!');
+            console.log('📊 Estatísticas do jogo:', gameStats);
+        });
     </script>
-</body>
-</html>
-<title>Teste do VLibras</title>
-</head>
-
-<body>
-  <div vw class="enabled">
-    <div vw-access-button class="active"></div>
-    <div vw-plugin-wrapper>
-      <div class="vw-plugin-top-wrapper"></div>
-    </div>
-  </div>
-  <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-  <script>
-    new window.VLibras.Widget('https://vlibras.gov.br/app');
-  </script>
 </body>
 </html>
